@@ -43,5 +43,29 @@ class TestHTMLNode(unittest.TestCase):
         expected_repr = "HTMLNode(tag='div', value='Hello, World!', children=[], props={'class': 'container'})"
         self.assertEqual(repr(node), expected_repr)
 
+    def test_to_html_with_tag_and_children(self):
+        # Create an HTMLNode with tag and children
+        node = HTMLNode(tag='div', children=[
+            HTMLNode(tag='p', value='Lorem ipsum', children=[]),
+            HTMLNode(tag='span', value='Dolor sit amet', children=[]),
+        ])
+        # Verify that to_html returns the expected HTML string
+        expected_html = '<div><p>Lorem ipsum</p><span>Dolor sit amet</span></div>'
+        self.assertEqual(node.to_html(), expected_html)
+
+    # def test_to_html_without_tag(self):
+    #     # Create an HTMLNode without a tag
+    #     node = HTMLNode(value='Hello, World!', children=[], props={'class': 'container'})
+    #     # Verify that to_html raises a ValueError
+    #     with self.assertRaises(ValueError):
+    #         node.to_html()
+
+    # def test_to_html_without_children(self):
+    #     # Create an HTMLNode without any children
+    #     node = HTMLNode(tag='div', value='Hello, World!', children=None, props={'class': 'container'})
+    #     # Verify that to_html raises a ValueError
+    #     with self.assertRaises(ValueError):
+    #         node.to_html()
+
 if __name__ == '__main__':
     unittest.main()
